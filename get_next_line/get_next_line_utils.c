@@ -14,6 +14,8 @@ int	ft_strchr(char *str, char c)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	if (c == '\0')
 		return (0);
@@ -45,6 +47,15 @@ char	*ft_strjoin(char *backup, char *str)
 	int	b_len;
 	int	s_len;
 
+	if (!backup)
+	{
+		backup = (char *)malloc(sizeof(char) * 1);
+		if (!backup)
+			return(NULL);
+		backup[0] = '\0';
+	}
+	if (!str)
+		return (NULL);
 	b_len = ft_strlen(backup);
 	s_len = ft_strlen(str);
 	new = (char *)malloc(sizeof(char) * (b_len + s_len + 1));
