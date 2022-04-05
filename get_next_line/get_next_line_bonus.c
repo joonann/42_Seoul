@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 14:04:02 by junhkim           #+#    #+#             */
-/*   Updated: 2022/04/05 15:59:14 by junhkim          ###   ########.fr       */
+/*   Created: 2022/04/05 14:04:26 by junhkim           #+#    #+#             */
+/*   Updated: 2022/04/05 15:58:00 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_get_line(char *backup)
 {
@@ -107,7 +107,6 @@ char	*get_next_line(int fd)
 	backup[fd] = ft_backup(backup[fd], result);
 	if (!result || !backup[fd])
 	{
-		free(result);
 		free(backup[fd]);
 		return (NULL);
 	}
