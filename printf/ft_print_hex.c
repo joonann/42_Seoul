@@ -7,13 +7,13 @@ int	ft_print_hex(unsigned int n, char format)
 
 	print_len = 0;
 	hex_string(hex, format);
-	if (format == 'x')
+	if (n == 0)
 	{
-		
-		print_len = ft_print_hex_low(n);
+		write(1, "0", 1);
+		print_len++;
+		return (print_len);
 	}
-	else
-		print_len = ft_print_hex_up(n);
+		print_len = ft_print_hex_do(n, hex);
 	return (print_len);
 }
 
@@ -34,29 +34,48 @@ void	hex_string(char *hex, char format)
 	}
 	while (i < 16)
 	{
-		str[i] = c;
+		hex[i] = c;
 		i++;
 		c++;
 	}
-	str[i] = 0;
+	hex[i] = 0;
 }
 
-int	ft_print_hex_low(unsigned int n)
+int	ft_print_hex_do(unsigned int n, char *hex)
 {
-	char		*hex;
 	int		print_len;
 	unsigned int	tmp;
 
-	tmp = n;
 	print_len = 0;
-	if (n == 0)
+	tmp = n;
+	while (tmp > 0)
 	{
-		write(1, "0", 1);
+		tmp /= 16;
 		print_len++;
-		return (print_len);
 	}
-	hex = (char *)malloc(17);
-	if (!hex)
-		return (0);
-	
+	tmp = n;
+	ft_puthex(tmp, print_len, hex);
+	return (print_len);
+}
+
+void	ft_puthex(unsigned int n, int print_len, char *hex)
+{
+	int	i;
+	char	*str;
+
+	str = (char *)malloc(print_len + 1);
+	if (!str)
+		return ;
+	i = print_len;
+	str[i] = 0;
+	i--;
+	while (n > 0)
+	{
+		str[i] = hex[n % 16];
+		n /= 16;
+		i--;
+	}
+	write(1, str, print_len);
+	free(str);
+	return ;
 }
