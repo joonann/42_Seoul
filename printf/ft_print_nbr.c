@@ -29,9 +29,6 @@ static void	ft_putposnbr(unsigned long long n)
 
 void	ft_putnbr(long long n)
 {
-	long long	tmp;
-	int		i;
-
 	if (n < 0)
 	{
 		write(1, "-", 1);

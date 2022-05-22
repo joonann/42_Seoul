@@ -37,7 +37,7 @@ $(NAME) : $(OBJS)
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_b)
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
