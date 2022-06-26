@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:33:21 by junhkim           #+#    #+#             */
-/*   Updated: 2022/06/26 10:39:38 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/06/26 15:47:51 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	map_check_wall(t_game *g)
 		j = 0;
 		while (g->map_tab[i][j])
 		{
-			if (i == 0 || j == 0 || i == g->wid || j == g->hei)
+			if (i == 0 || j == 0 || i == g->hei || j == g->wid)
 			{
 				if (g->map_tab[i][j] != '1')
 					exit_error_free("Map isn't surrounded by walls\n", g);

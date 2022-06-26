@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 07:04:47 by junhkim           #+#    #+#             */
-/*   Updated: 2022/06/26 10:19:30 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/06/26 15:47:35 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ int	main(int argc, char **argv)
 		exit_error("Usage: ./so_long [MAP_FILE.ber]\n");
 	if (map_extens_check(argv[1]) != 0)
 		exit_error("Map file extension must be [.ber].\n");
-	game = (t_game *)malloc(sizeof(t_game));
+	game = (t_game *)ft_calloc(1, sizeof(t_game));
+	if (!game)
+		return (0);
 	game_init(game, argv[1]);
 	mlx_hook(game->win, X_EVENT_KEY_PRESS, 0, &press_key, game);
 	mlx_hook(game->win, X_EVENT_KEY_EXIT, 0, &exit_game, game);
