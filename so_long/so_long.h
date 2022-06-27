@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:22:06 by junhkim           #+#    #+#             */
-/*   Updated: 2022/06/26 08:56:56 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:22:15 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_game
 	int		count_mov;
 }	t_game;
 
-t_img	img_init(void *mlx);
+t_img	img_init(void *mlx, t_game *g);
 void	put_img(t_game *g, int w, int h);
 void	img_set(t_game *g);
 
@@ -76,5 +76,6 @@ void	map_check(t_game *g);
 void	exit_error_free(char *message, t_game *g);
 void	ft_t_game_free(t_game *g);
 int		map_extens_check(char *filename);
+void	ft_null_check(int null_check, char *err_mes, t_game *g);
 
 #endif

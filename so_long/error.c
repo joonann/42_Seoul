@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:10:23 by junhkim           #+#    #+#             */
-/*   Updated: 2022/06/26 10:10:34 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:58:28 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,10 @@ int	map_extens_check(char *filename)
 
 	len = ft_strlen(filename);
 	return (ft_strncmp(filename + len - 4, ".ber", 4));
+}
+
+void	ft_null_check(int null_check, char *err_mes, t_game *g)
+{
+	if (null_check == 0)
+		exit_error_free(err_mes, g);
 }

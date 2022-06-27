@@ -6,13 +6,13 @@
 /*   By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 05:57:25 by junhkim           #+#    #+#             */
-/*   Updated: 2022/06/26 08:20:22 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:25:46 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_img	img_init(void *mlx)
+t_img	img_init(void *mlx, t_game *g)
 {
 	t_img	tmp;
 	int		wid;
@@ -23,7 +23,8 @@ t_img	img_init(void *mlx)
 	tmp.tre = mlx_xpm_file_to_image(mlx, "./images/tre.xpm", &wid, &hei);
 	tmp.bkg = mlx_xpm_file_to_image(mlx, "./images/bkg.xpm", &wid, &hei);
 	tmp.bef = mlx_xpm_file_to_image(mlx, "./images/bef.xpm", &wid, &hei);
-	tmp.aft = mlx_xpm_file_to_image(mlx, "./images/aft.xpm", &wid, &hei);
+	if (!tmp.tom || !tmp.jer || !tmp.tre || !tmp.bkg || !tmp.bef)
+		exit_error_free("image load failed\n", g);
 	return (tmp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:33:21 by junhkim           #+#    #+#             */
-/*   Updated: 2022/06/26 15:47:51 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:33:10 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ void	map_read(char *filename, t_game *g)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		exit_error("Map file open failed.\n");
+		exit_error("Map file open failed\n");
 	line = get_next_line(fd);
+	ft_null_check((int)line, "map_read failed", g);
 	g->hei = 0;
 	g->wid = ft_strlen(line) - 2;
 	g->map_str = ft_strdup(line);
+	ft_null_check((int)g->map_str, "map_read failed\n", g);
 	while (line)
 	{
 		free(line);
@@ -32,6 +34,7 @@ void	map_read(char *filename, t_game *g)
 		{
 			g->hei++;
 			g->map_str = ft_strjoin(g->map_str, line);
+			ft_null_check((int)g->map_str, "map_read failed\n", g);
 		}
 	}
 	close(fd);
@@ -40,6 +43,7 @@ void	map_read(char *filename, t_game *g)
 void	map_split(t_game *g)
 {
 	g->map_tab = ft_split(g->map_str, '\n');
+	ft_null_check((int)g->map_tab, "map_split failed\n", g);
 	g->wid_len = g->wid + 1;
 	g->hei_len = g->hei + 1;
 	g->count_mov = 0;

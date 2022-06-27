@@ -6,7 +6,7 @@
 #    By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 22:53:27 by junhkim           #+#    #+#              #
-#    Updated: 2022/06/26 09:04:33 by junhkim          ###   ########.fr        #
+#    Updated: 2022/06/27 16:24:57 by junhkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ RM = rm -rf
 SRCS_DIR = ./src/
 LIB_DIR = ./lib/
 
-LIB_NAME = ./lib/lib/junhkim.a
-INCS = -I include
+LIB_NAME = lib_junhkim.a
 
 SRCS = key.c key_find_p.c image.c main.c map_read.c error.c
 
