@@ -43,6 +43,7 @@ $(NAME) : $(OBJS)
 all: $(NAME)
 
 bonus: $(OBJS_b)
+	make all
 	$(AR) $(NAME) $(OBJS_b)
 
 clean:
