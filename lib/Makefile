@@ -12,7 +12,7 @@
 
 NAME = lib_junhkim.a
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 AR = ar
