@@ -29,6 +29,7 @@
 int		open_file_io(char *filename, int inout);
 void	px_redirection(char *cmd, char **envp);
 void	px_execve(char *cmd, char **envp);
+void	infile_nonexist(char **argv, char **envp);
 
 void	error_with_message(int exitcode, char *message);
 void	error_and_free(int exitcode, char *message, char **cmd_split);
