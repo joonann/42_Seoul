@@ -17,7 +17,7 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C $(LIB_DIR)
-	$(CC) $(FLAGS) $(OBJS)
+	$(CC) $(FLAGS) $(OBJS) -o $@
 
 all: $(NAME)
 

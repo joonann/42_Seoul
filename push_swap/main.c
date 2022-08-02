@@ -7,7 +7,6 @@
 
 typedef struct s_node {
 	int	cont;
-	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
 
@@ -34,7 +33,7 @@ void	error_exit(int check)
 	else
 		exit(1);
 }
-// Error 출력하면서 exit 만 해줌
+
 void	stack_free(t_node *node)
 {
 	t_node *tmp;
@@ -47,8 +46,8 @@ void	stack_free(t_node *node)
 	}
 	free(node);
 }
-// stack의 모든 노드 free 해줌
-void	error_free(t_info *info, int check) // check가 0이면 error출력 없이 종료
+
+void	error_free(t_info *info, int check)
 {
 	if (info->a)
 		stack_free(info->a);
@@ -59,7 +58,6 @@ void	error_free(t_info *info, int check) // check가 0이면 error출력 없이 
 	free(info);
 	error_exit(check);
 }
-// free 후 exit 해줌
 
 void	atoll_plus_minus_check(char *argv_str, int *index, t_info *info)
 {
@@ -142,24 +140,6 @@ long long	atoll_to_int(char *str, t_info *info, int *index)
 	return (tmp);
 }
 
-// void	stack_parse_loop(int size, char **argv)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 1;
-// 	while (argv[i])
-// 	{
-// 		j = 0;
-// 		{
-// 			while (argv[i][j])
-// 			{
-				
-// 			}
-// 		}
-// 	}
-// }
-
 t_info	*info_init(void)
 {
 	t_info	*info;
@@ -236,20 +216,70 @@ void	arr_bubble_sort(int *arr, t_info *info)
 	}
 }
 
+t_node	*create_one_node(t_info *info)
+{
+	t_node	*tmp;
+
+	tmp = (t_node *)ft_calloc(1, sizeof(t_node));
+	if (!tmp)
+		error_free(info, 1);
+	return (tmp);
+}
+
+t_node	*first_node(t_info *info)
+{
+	t_node	*tmp;
+
+	tmp = create_one_node(info);
+	tmp->cont = info->arr[0];
+	tmp->next = NULL;
+	return (tmp);
+}
+
+void	arr_to_stack(t_info *info)
+{
+	int	i;
+	t_node	*tmp;
+
+	tmp = NULL;
+	info->a = create_one_node(info);
+	info->a->cont = info->arr[0];
+	info->a->next = tmp;
+	i = 1;
+	while (i < info->size)
+	{
+		tmp = create_one_node(info);
+		tmp->cont = info->arr[i];
+		tmp->next = tmp;
+		i++;
+	}
+	tmp->next = NULL;
+	info->a_top = info->a;
+	info->a_bot = tmp;
+}
+
 int	main(int argc, char **argv)
 {
 	t_info	*info;
-	int	i = 5;
+	int	i = 0;
 
 	info = info_init();
 	arr_size(argc, argv, info);
 	argv_to_arr(info, argv);
+	arr_to_stack(info);
 	arr_bubble_sort(info->arr, info);
-//	arr_to_stack(info);
 //	stack_sort(info);
 //	print_cmd?
 
-	printf("arr[%d] = %d\n", i, info->arr[i]);
-
+	t_node *tmp;
+	tmp = info->a;
+	printf("%d\n", info->a->next->cont);
+	while (tmp->next)
+	{
+		printf("arr[%d] = %d\n", i, tmp->cont);
+		tmp = tmp->next;
+		i++;
+	}
+// free
 	return (0);
 }
