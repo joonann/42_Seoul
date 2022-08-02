@@ -8,7 +8,7 @@ LIB_DIR = ./libft
 LIB = ft
 FLAGS = $(CFLAGS) -L$(LIB_DIR) -l$(LIB)
 
-SRCS = main.c
+SRCS = push_swap.c
 
 OBJS = $(SRCS:.c=.o)
 
