@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:29 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/03 06:48:30 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/03 08:29:43 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ int	main(int argc, char **argv)
 	argv_to_arr(info, argv);
 	arr_to_stack(info);
 	arr_bubble_sort(info->arr, info);
-//	stack_sort(info);
+	stack_sort(info);
 //	print_cmd?
-
 // free
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:44 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/03 06:48:46 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/03 09:08:45 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ void	rr(t_info *info);
 void	rra(t_info *info);
 void	rrb(t_info *info);
 void	rrr(t_info *info);
+void    sort_three_a(t_info *info);
+void    sort_five(t_info *info);
+void    stack_sort(t_info *info);
 
 #endif
