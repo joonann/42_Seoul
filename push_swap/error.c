@@ -36,7 +36,7 @@ void	stack_free(t_node *node)
 	free(node);
 }
 
-void	error_free(t_info *info, int check)
+void	info_free(t_info *info)
 {
 	if (info->a_top)
 		stack_free(info->a_top);
@@ -44,6 +44,12 @@ void	error_free(t_info *info, int check)
 		stack_free(info->b_top);
 	if (info->arr)
 		free(info->arr);
-	free(info);
+	if (info)
+		free(info);
+}
+
+void	error_free(t_info *info, int check)
+{
+	info_free(info);
 	error_exit(check);
 }

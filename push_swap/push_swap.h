@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# include <stdio.h> // alsfjsadk;lfj;lak
+
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
@@ -39,6 +41,7 @@ typedef struct s_info {
 
 void	error_exit(int check);
 void	stack_free(t_node *node);
+void	info_free(t_info *info);
 void	error_free(t_info *info, int check);
 void	atoll_plus_minus_check(char *argv_str, int *index, t_info *info);
 void	arr_size(int argc, char **argv, t_info *info);
@@ -68,7 +71,9 @@ void	rra(t_info *info);
 void	rrb(t_info *info);
 void	rrr(t_info *info);
 void    sort_three_a(t_info *info);
-void    sort_five(t_info *info);
+void    sort_five_a(t_info *info);
 void    stack_sort(t_info *info);
+int	check_sorted_a(t_info *info, int size);
+int	check_sorted_b(t_info *info, int size);
 
 #endif
