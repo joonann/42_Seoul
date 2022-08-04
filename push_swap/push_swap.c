@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:29 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/04 21:23:48 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/04 22:40:20 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -497,18 +497,21 @@ void    sort_a_recurs(t_info *info, int start, int end)
 
     size = end - start + 1;
     new_start_1 = start + (size * 1 / 3);
-    new_start_2 = start + (size * 2 / 3);
+    new_start_2 = start + (size * 2 / 3) - 1;
     if (check_sorted_a(info, size))
         return ;
     if (size <= 5)
     {
-        sort_under_five_a(info, size);
+		if (size == info->a_size)
+			sort_only_under_five_a(info, size);
+        else
+			sort_under_five_a(info, size);
         return ;
     }
     divide_into_three_a(info, start, end);
     sort_a_recurs(info, new_start_2, end);
-    sort_b_recurs(info, new_start_1, new_start_2 - 1);
-    sort_b_recurs(info, start, new_start_1 - 1);
+    sort_b_recurs(info, new_start_1, new_start_2);
+    sort_b_recurs(info, start, new_start_1 - 2);
 }
 
 void    sort_b_recurs(t_info *info, int start, int end)
@@ -522,9 +525,9 @@ void    sort_b_recurs(t_info *info, int start, int end)
     new_start_1 = start + (size * 1 / 3);
     if (size <= 5)
     {
-        if (!check_sorted_b(info, size))
+		if (!check_sorted_b(info, size))
             sort_under_five_b(info, size);
-        while (i < size)
+		while (i < size)
         {
             pa(info);
             i++;
@@ -533,7 +536,7 @@ void    sort_b_recurs(t_info *info, int start, int end)
     }
     divide_into_three_b(info, start, end);
     sort_a_recurs(info, new_start_1, end);
-    sort_b_recurs(info, start, new_start_1 - 1);
+    sort_b_recurs(info, start, new_start_1 - 2);
 }
 
 void	stack_sort(t_info *info)
@@ -580,6 +583,7 @@ int	main(int argc, char **argv)
 	arr_to_stack(info);
 	arr_bubble_sort(info->arr, info);
 
+	printing(info);
 	stack_sort(info);
 	
 	printing(info);
