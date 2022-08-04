@@ -63,31 +63,3 @@ int	check_sorted_b(t_info *info, int size)
 		return (0);
 	return (1);
 }
-
-void    sort_three_a(t_info *info)
-{
-    int top;
-    int mid;
-    int bot;
-
-	
-    top = info->a_top->cont;
-    mid = info->a_top->next->cont;
-    bot = info->a_top->next->next->cont;
-    if (mid > top && mid > bot && bot > top)
-    {
-        sa(info);
-        ra(info);
-    }
-    else if (top > mid && bot > mid && bot > top)
-        sa(info);
-    else if (mid > bot && mid > top && top > bot)
-        rra(info);
-    else if (top > mid && bot > mid && top > bot)
-        ra(info);
-    else if (top > mid && mid > bot && top > bot)
-    {
-        sa(info);
-        rra(info);
-    }
-}

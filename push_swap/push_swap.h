@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:44 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/03 09:08:45 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/04 20:52:57 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ void	rr(t_info *info);
 void	rra(t_info *info);
 void	rrb(t_info *info);
 void	rrr(t_info *info);
-void    sort_three_a(t_info *info);
 void    sort_five_a(t_info *info);
 void    stack_sort(t_info *info);
 int	check_sorted_a(t_info *info, int size);
 int	check_sorted_b(t_info *info, int size);
+
+void    sort_b_recurs(t_info *info, int start, int end);
 
 #endif

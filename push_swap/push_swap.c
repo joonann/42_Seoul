@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:29 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/03 08:29:43 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/04 21:23:48 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,129 @@ void	sort_two_b(t_info *info)
 		sb(info);
 }
 
+void    sort_only_three_a(t_info *info)
+{
+    int top;
+    int mid;
+    int bot;
+
+    top = info->a_top->cont;
+    mid = info->a_top->next->cont;
+    bot = info->a_top->next->next->cont;
+    if (mid > top && mid > bot && bot > top)
+    {
+        sa(info);
+        ra(info);
+    }
+    else if (top > mid && bot > mid && bot > top)
+        sa(info);
+    else if (mid > bot && mid > top && top > bot)
+        rra(info);
+    else if (top > mid && bot > mid && top > bot)
+        ra(info);
+    else if (top > mid && mid > bot && top > bot)
+    {
+        sa(info);
+        rra(info);
+    }
+}
+
+void	sort_three_a_2(t_info *info)
+{
+	pb(info);
+	sa(info);
+	pa(info);
+}
+
+void	sort_three_a_3(t_info *info)
+{
+	ra(info);
+	ra(info);
+	pb(info);
+	rra(info);
+	rra(info);
+	pa(info);
+}
+
+void	sort_three_a_4(t_info *info)
+{
+	pb(info);
+	ra(info);
+	ra(info);
+	pa(info);
+	rra(info);
+	rra(info);
+}
+
+void	sort_three_a_5(t_info *info)
+{
+	ra(info);
+	pb(info);
+	pb(info);
+	sb(info);
+	rra(info);
+	pa(info);
+	pa(info);	
+}
+
+void    sort_three_a(t_info *info)
+{
+    int top;
+    int mid;
+    int bot;
+
+    top = info->a_top->cont;
+    mid = info->a_top->next->cont;
+    bot = info->a_top->next->next->cont;
+    if (mid > top && mid > bot && bot > top)
+		sort_three_a_2(info);
+    else if (top > mid && bot > mid && bot > top)
+		sa(info);
+    else if (mid > bot && mid > top && top > bot)
+		sort_three_a_3(info);
+    else if (top > mid && bot > mid && top > bot)
+		sort_three_a_4(info);
+	else if (top > mid && mid > bot && top > bot)
+		sort_three_a_5(info);
+}
+
+void	sort_three_b_2(t_info *info)
+{
+	pa(info);
+	pa(info);
+	rb(info);
+	sa(info);
+	pb(info);
+	pb(info);
+	rrb(info);
+}
+
+void	sort_three_b_3(t_info *info)
+{
+	pa(info);
+	rb(info);
+	pa(info);
+	rrb(info);
+	pb(info);
+	pb(info);
+}
+
+void	sort_three_b_4(t_info *info)
+{
+	pa(info);
+	sb(info);
+	rb(info);
+	pb(info);
+	rrb(info);
+}
+
+void	sort_three_b_5(t_info *info)
+{
+	pa(info);
+	sb(info);
+	pb(info);
+}
+
 void    sort_three_b(t_info *info)
 {
     int top;
@@ -54,44 +177,66 @@ void    sort_three_b(t_info *info)
     top = info->b_top->cont;
     mid = info->b_top->next->cont;
     bot = info->b_top->next->next->cont;
-    if (mid > top && mid > bot && bot > top)
-		rb(info);
+	if (top < mid && mid < bot)
+		sort_three_b_2(info);
+    else if (mid > top && mid > bot && bot > top)
+		sort_three_b_3(info);
     else if (top > mid && bot > mid && bot > top)
-        rrb(info);
+        sort_three_b_4(info);
     else if (mid > bot && mid > top && top > bot)
         sb(info);
     else if (top > mid && bot > mid && top > bot)
-    {
-		rrb(info);
-		sb(info);
-	}
-    else if (top < mid && mid < bot)
-    {
-        rb(info);
-        sb(info);
-    }
+		sort_three_b_5(info);
 }
 
-
-void	sort_four_a(t_info *info)
+void	sort_only_four_a(t_info *info)
 {
 	while (info->a_top->cont != info->arr[0])
 		ra(info);
 	pb(info);
-	sort_three_a(info);
+	sort_only_three_a(info);
 	pa(info);
+}
+
+void	sort_four_a(t_info *info)
+{
+	int	r_a;
+
+	if (check_sorted_a(info, 4))
+		return ;
+	r_a = 0;
+	pb(info);
+	sort_three_a(info);
+	while (info->a_top->cont < info->b_top->cont)
+	{
+		ra(info);
+		r_a++;
+	}
+	pa(info);
+	while (r_a--)
+		rra(info);
 }
 
 void	sort_four_b(t_info *info)
 {
-	while (info->b_top->cont != info->arr[3])
-		rb(info);
+	int	r_b;
+
+	if (check_sorted_b(info, 4))
+		return ;
+	r_b = 0;
 	pa(info);
 	sort_three_b(info);
-	pb(info);
+	while (info->a_top->cont > info->b_top->cont)
+	{
+		rb(info);
+		r_b++;
+	}
+	pa(info);
+	while (r_b--)
+		rrb(info);
 }
 
-void    sort_five_a(t_info *info)
+void    sort_only_five_a(t_info *info)
 {
     int mid;
     int i;
@@ -111,38 +256,109 @@ void    sort_five_a(t_info *info)
         	ra(info);
         i++;
     }
-    sort_three_a(info);
+    sort_only_three_a(info);
     if (info->b_top->cont < info->b_top->next->cont)
         sb(info);
     pa(info);
     pa(info);
 }
 
-void    sort_five_b(t_info *info)
+void	sort_five_a_2(t_info *info, int *r_a)
 {
-    int mid;
-    int i;
-    int check;
+	int	i;
 
-    mid = info->arr[2];
-    i = 0;
-    check = 0;
-    while (check < 2)
-    {
-        if (info->b_top->cont > mid)
-        {
-            pa(info);
-            check++;
-        }
-		else
-        	rb(info);
-        i++;
-    }
-    sort_three_b(info);
-    if (info->b_top->cont < info->b_top->next->cont)
-        sa(info);
-    pb(info);
-    pb(info);
+	i = 0;
+	if (info->b_top->cont < info->b_top->next->cont)
+		sb(info);
+	while (info->a_top->cont < info->b_top->cont && i < 3)
+	{
+		ra(info);
+		(*r_a)++;
+		i++;
+	}
+}
+
+void	sort_five_a(t_info *info)
+{
+	int	r_a;
+	int	p_b;
+
+	if (check_sorted_a(info, 5))
+		return ;
+	r_a = 0;
+	pb(info);
+	pb(info);
+	p_b = 1;
+	sort_three_a(info);
+	sort_five_a_2(info, &r_a);
+	pa(info);
+	while (r_a--)
+	{
+		if (info->a_bot->cont < info->b_top->cont)
+		{
+			pa(info);
+			p_b--;
+		}
+		rra(info);
+	}
+	if (p_b)
+		pa(info);
+}
+
+void	sort_five_b_2(t_info *info, int *r_b)
+{
+	int	i;
+
+	i = 0;
+	if (info->a_top->cont > info->a_top->next->cont)
+		sa(info);
+	while (info->a_top->cont < info->b_top->cont && i < 3)
+	{
+		rb(info);
+		(*r_b)++;
+		i++;
+	}	
+}
+
+void	sort_five_b(t_info *info)
+{
+	int	r_b;
+	int	p_a;
+
+	if (check_sorted_b(info, 5))
+		return ;
+	r_b = 0;
+	pa(info);
+	pa(info);
+	p_a = 1;
+	sort_three_b(info);
+	sort_five_b_2(info, &r_b);
+	pb(info);
+	while (r_b--)
+	{
+		if (info->a_top->cont < info->b_bot->cont)
+		{
+			pb(info);
+			p_a--;
+		}
+		rrb(info);
+	}
+	if (p_a)
+		pb(info);
+}
+
+void	sort_only_under_five_a(t_info *info, int size)
+{
+	if (size == 1)
+		return ;
+	else if (size == 2)
+		sort_two_a(info);
+	else if (size == 3)
+		sort_only_three_a(info);
+	else if (size == 4)
+		sort_only_four_a(info);
+	else if (size == 5)
+		sort_only_five_a(info);
 }
 
 void	sort_under_five_a(t_info *info, int size)
@@ -273,37 +489,64 @@ void	divide_into_three_b(t_info *info, int start, int end)
 	divide_rotate_back(info, r_a, r_b);
 }
 
+void    sort_a_recurs(t_info *info, int start, int end)
+{
+    int size;
+    int new_start_1;
+    int new_start_2;
+
+    size = end - start + 1;
+    new_start_1 = start + (size * 1 / 3);
+    new_start_2 = start + (size * 2 / 3);
+    if (check_sorted_a(info, size))
+        return ;
+    if (size <= 5)
+    {
+        sort_under_five_a(info, size);
+        return ;
+    }
+    divide_into_three_a(info, start, end);
+    sort_a_recurs(info, new_start_2, end);
+    sort_b_recurs(info, new_start_1, new_start_2 - 1);
+    sort_b_recurs(info, start, new_start_1 - 1);
+}
+
+void    sort_b_recurs(t_info *info, int start, int end)
+{
+    int size;
+    int i;
+    int new_start_1;
+
+    i = 0;
+    size = end - start + 1;
+    new_start_1 = start + (size * 1 / 3);
+    if (size <= 5)
+    {
+        if (!check_sorted_b(info, size))
+            sort_under_five_b(info, size);
+        while (i < size)
+        {
+            pa(info);
+            i++;
+        }
+        return  ;    
+    }
+    divide_into_three_b(info, start, end);
+    sort_a_recurs(info, new_start_1, end);
+    sort_b_recurs(info, start, new_start_1 - 1);
+}
+
 void	stack_sort(t_info *info)
 {
 	if (info->size <= 5)
-		sort_under_five_a(info, info->size);
+		sort_only_under_five_a(info, info->size);
 	else
 	{
-		divide_into_three_a(info, 0, 29);
-		divide_into_three_a(info, 19, 29);
-		divide_into_three_a(info, 25, 29);
-		sort_under_five_a(info, info->a_size);
-		sort_under_five_b(info, 2);
-		pa(info);
-		pa(info);
-		divide_into_three_b(info, 19, 24);
-		sort_under_five_a(info, 3);
-		// sort_under_five_b(info, 3);
-		// pa(info);
-		// pa(info);
-		// pa(info);
+		sort_a_recurs(info, 0, info->size - 1);
 	}
 }
 
-// void	sort_four_a(t_info *info)
-// {
-// 	int	
-// 	while ()
-// 	{
-// 		if (info->a_top->cont == info->arr[0])
-// 			pa
-// }
-
+// ㅈㅣ워
 void	printing(t_info *info)
 {
 	t_node *tmp;
