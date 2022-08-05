@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 10:27:56 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/05 10:52:11 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 11:15:15 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	divide_loop_a(t_info *info, int *pv, int *r_a, int *r_b)
 			ra(info);
 			(*r_a)++;
 		}
+		i++;
 	}
 }
 
@@ -96,6 +97,7 @@ void	divide_loop_b(t_info *info, int *pv, int *r_a, int *r_b)
 			rb(info);
 			(*r_b)++;
 		}
+		i++;
 	}
 }
 
