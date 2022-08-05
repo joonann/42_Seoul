@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:29 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/04 22:40:20 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 09:50:33 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	arr_init(t_info *info)
 	if (!info->arr)
 		error_free(info, 1);
 }
-// from here
+
 void	sort_two_a(t_info *info)
 {
 	if (info->a_top->cont > info->a_top->next->cont)
@@ -126,7 +126,7 @@ void    sort_three_a(t_info *info)
 		sort_three_a_3(info);
     else if (top > mid && bot > mid && top > bot)
 		sort_three_a_4(info);
-	else if (top > mid && mid > bot && top > bot)
+	else if (top > mid && mid > bot)
 		sort_three_a_5(info);
 }
 
@@ -143,11 +143,10 @@ void	sort_three_b_2(t_info *info)
 
 void	sort_three_b_3(t_info *info)
 {
-	pa(info);
 	rb(info);
 	pa(info);
 	rrb(info);
-	pb(info);
+	sb(info);
 	pb(info);
 }
 
@@ -189,9 +188,31 @@ void    sort_three_b(t_info *info)
 		sort_three_b_5(info);
 }
 
+int	min_four(t_info *info)
+{
+	t_node	*tmp;
+	int		min;
+	int		i;
+
+	tmp = info->a_top;
+	i = 0;
+	min = tmp->cont;
+	while (i < 3)
+	{
+		if (min > tmp->next->cont)
+			min = tmp->next->cont;
+		tmp = tmp->next;
+		i++;
+	}
+	return (min);
+}
+
 void	sort_only_four_a(t_info *info)
 {
-	while (info->a_top->cont != info->arr[0])
+	int	min;
+
+	min = min_four(info);
+	while (info->a_top->cont != min)
 		ra(info);
 	pb(info);
 	sort_only_three_a(info);
@@ -201,16 +222,19 @@ void	sort_only_four_a(t_info *info)
 void	sort_four_a(t_info *info)
 {
 	int	r_a;
+	int	i;
 
 	if (check_sorted_a(info, 4))
 		return ;
 	r_a = 0;
 	pb(info);
 	sort_three_a(info);
-	while (info->a_top->cont < info->b_top->cont)
+	i = 0;
+	while (info->a_top->cont < info->b_top->cont && i < 3)
 	{
 		ra(info);
 		r_a++;
+		i++;
 	}
 	pa(info);
 	while (r_a--)
@@ -220,20 +244,56 @@ void	sort_four_a(t_info *info)
 void	sort_four_b(t_info *info)
 {
 	int	r_b;
+	int	i;
 
 	if (check_sorted_b(info, 4))
 		return ;
 	r_b = 0;
 	pa(info);
 	sort_three_b(info);
-	while (info->a_top->cont > info->b_top->cont)
+	i = 0;
+	while (info->a_top->cont < info->b_top->cont && i < 3)
 	{
 		rb(info);
 		r_b++;
+		i++;
 	}
-	pa(info);
+	pb(info);
 	while (r_b--)
 		rrb(info);
+}
+
+void	arr_five_bubble_sort(int *arr)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 5)
+	{
+		j = i + 1;
+		while (j < 5)
+		{
+			if (arr[i] > arr[j])
+				ft_swap(&arr[i], &arr[j]);
+			j++;
+		}
+		i++;
+	}
+}
+
+int	mid_five(t_info *info)
+{
+	int	arr[5];
+
+	arr[0] = info->a_top->cont;
+	arr[1] = info->a_top->next->cont;
+	arr[2] = info->a_top->next->next->cont;
+	arr[3] = info->a_top->next->next->next->cont;
+	arr[4] = info->a_top->next->next->next->next->cont;
+	arr_five_bubble_sort(arr);
+	return (arr[2]);
+	
 }
 
 void    sort_only_five_a(t_info *info)
@@ -242,10 +302,10 @@ void    sort_only_five_a(t_info *info)
     int i;
     int check;
 
-    mid = info->arr[2];
+    mid = mid_five(info);
     i = 0;
     check = 0;
-    while (check < 2)
+    while (check < 2 && i < 5)
     {
         if (info->a_top->cont < mid)
         {
@@ -443,8 +503,8 @@ void	divide_into_three_a(t_info *info, int start, int end)
 	loop = end - start + 1;
 	r_a = 0;
 	r_b = 0;
-	pv[0] = info->arr[start + ((end - start) * 1 / 3)];
-	pv[1] = info->arr[start + ((end - start) * 2 / 3)];
+	pv[0] = info->arr[start + (loop / 3)];
+	pv[1] = info->arr[start + (loop / 3 * 2)];
 	divide_loop_a(info, pv, &r_a, &r_b, loop);
 	divide_rotate_back(info, r_a, r_b);
 }
@@ -456,10 +516,10 @@ void	divide_loop_b(t_info *info, int *pv, int *r_a, int *r_b, int loop)
 	while (loop--)
 	{
 		tmp = info->b_top->cont;
-		if (tmp >= pv[1])
+		if (tmp >= pv[0])
 		{	
 			pa(info);
-			if (tmp < pv[0])
+			if (tmp < pv[1])
 			{
 				ra(info);
 				(*r_a)++;
@@ -483,8 +543,8 @@ void	divide_into_three_b(t_info *info, int start, int end)
 	loop = end - start + 1;
 	r_a = 0;
 	r_b = 0;
-	pv[0] = info->arr[start + ((end - start) * 1 / 3)];
-	pv[1] = info->arr[start + ((end - start) * 2 / 3)];
+	pv[0] = info->arr[start + (loop / 3)];
+	pv[1] = info->arr[start + (loop / 3 * 2)];
 	divide_loop_b(info, pv, &r_a, &r_b, loop);
 	divide_rotate_back(info, r_a, r_b);
 }
@@ -496,8 +556,8 @@ void    sort_a_recurs(t_info *info, int start, int end)
     int new_start_2;
 
     size = end - start + 1;
-    new_start_1 = start + (size * 1 / 3);
-    new_start_2 = start + (size * 2 / 3) - 1;
+    new_start_1 = start + (size / 3);
+    new_start_2 = start + (size / 3 * 2);
     if (check_sorted_a(info, size))
         return ;
     if (size <= 5)
@@ -510,8 +570,8 @@ void    sort_a_recurs(t_info *info, int start, int end)
     }
     divide_into_three_a(info, start, end);
     sort_a_recurs(info, new_start_2, end);
-    sort_b_recurs(info, new_start_1, new_start_2);
-    sort_b_recurs(info, start, new_start_1 - 2);
+    sort_b_recurs(info, new_start_1, new_start_2 - 1);
+    sort_b_recurs(info, start, new_start_1 - 1);
 }
 
 void    sort_b_recurs(t_info *info, int start, int end)
@@ -522,7 +582,7 @@ void    sort_b_recurs(t_info *info, int start, int end)
 
     i = 0;
     size = end - start + 1;
-    new_start_1 = start + (size * 1 / 3);
+    new_start_1 = start + (size / 3);
     if (size <= 5)
     {
 		if (!check_sorted_b(info, size))
@@ -536,7 +596,7 @@ void    sort_b_recurs(t_info *info, int start, int end)
     }
     divide_into_three_b(info, start, end);
     sort_a_recurs(info, new_start_1, end);
-    sort_b_recurs(info, start, new_start_1 - 2);
+    sort_b_recurs(info, start, new_start_1 - 1);
 }
 
 void	stack_sort(t_info *info)
@@ -582,12 +642,8 @@ int	main(int argc, char **argv)
 	argv_to_arr(info, argv);
 	arr_to_stack(info);
 	arr_bubble_sort(info->arr, info);
-
-	printing(info);
+	// printing(info); //dskjfjsdf
 	stack_sort(info);
-	
-	printing(info);
-
 	info_free(info);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:44 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/04 21:47:22 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 09:50:46 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
-
-# include <stdio.h> // alsfjsadk;lfj;lak
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
@@ -76,5 +74,7 @@ int	check_sorted_a(t_info *info, int size);
 int	check_sorted_b(t_info *info, int size);
 
 void    sort_b_recurs(t_info *info, int start, int end);
+
+void	printing(t_info *info);
 
 #endif
