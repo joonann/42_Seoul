@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   divide.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/05 10:27:56 by junhkim           #+#    #+#             */
+/*   Updated: 2022/08/05 10:52:11 by junhkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	divide_rotate_back(t_info *info, int r_a, int r_b)
@@ -20,11 +32,13 @@ void	divide_rotate_back(t_info *info, int r_a, int r_b)
 	}
 }
 
-void	divide_loop_a(t_info *info, int *pv, int *r_a, int *r_b, int loop)
+void	divide_loop_a(t_info *info, int *pv, int *r_a, int *r_b)
 {
 	int	tmp;
+	int	i;
 
-	while (loop--)
+	i = 0;
+	while (i < pv[2])
 	{
 		tmp = info->a_top->cont;
 		if (tmp < pv[1])
@@ -46,25 +60,26 @@ void	divide_loop_a(t_info *info, int *pv, int *r_a, int *r_b, int loop)
 
 void	divide_into_three_a(t_info *info, int start, int end)
 {
-	int	pv[2];
-	int	loop;
+	int	pv[3];
 	int	r_a;
 	int	r_b;
 
-	loop = end - start + 1;
+	pv[2] = end - start + 1;
 	r_a = 0;
 	r_b = 0;
-	pv[0] = info->arr[start + (loop / 3)];
-	pv[1] = info->arr[start + (loop / 3 * 2)];
-	divide_loop_a(info, pv, &r_a, &r_b, loop);
+	pv[0] = info->arr[start + (pv[2] / 3)];
+	pv[1] = info->arr[start + (pv[2] / 3 * 2)];
+	divide_loop_a(info, pv, &r_a, &r_b);
 	divide_rotate_back(info, r_a, r_b);
 }
 
-void	divide_loop_b(t_info *info, int *pv, int *r_a, int *r_b, int loop)
+void	divide_loop_b(t_info *info, int *pv, int *r_a, int *r_b)
 {
 	int	tmp;
+	int	i;
 
-	while (loop--)
+	i = 0;
+	while (i < pv[2])
 	{
 		tmp = info->b_top->cont;
 		if (tmp >= pv[0])
@@ -86,16 +101,15 @@ void	divide_loop_b(t_info *info, int *pv, int *r_a, int *r_b, int loop)
 
 void	divide_into_three_b(t_info *info, int start, int end)
 {
-	int	pv[2];
-	int	loop;
+	int	pv[3];
 	int	r_a;
 	int	r_b;
 
-	loop = end - start + 1;
+	pv[2] = end - start + 1;
 	r_a = 0;
 	r_b = 0;
-	pv[0] = info->arr[start + (loop / 3)];
-	pv[1] = info->arr[start + (loop / 3 * 2)];
-	divide_loop_b(info, pv, &r_a, &r_b, loop);
+	pv[0] = info->arr[start + (pv[2] / 3)];
+	pv[1] = info->arr[start + (pv[2] / 3 * 2)];
+	divide_loop_b(info, pv, &r_a, &r_b);
 	divide_rotate_back(info, r_a, r_b);
 }

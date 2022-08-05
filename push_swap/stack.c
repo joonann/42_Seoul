@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:37 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/03 06:48:39 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 10:32:36 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_node	*first_node(t_info *info)
 
 void	arr_to_stack(t_info *info)
 {
-	int	i;
+	int		i;
 	t_node	*new;
 
 	i = 0;

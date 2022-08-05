@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:48:20 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/03 06:48:21 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 10:39:32 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	error_exit(int check)
 
 void	stack_free(t_node *node)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
 	while (node->next)
 	{

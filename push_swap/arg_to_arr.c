@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:47:24 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/03 06:47:25 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 10:27:06 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	atoll_plus_minus_check(char *argv_str, int *index, t_info *info)
 	}
 	else
 		error_free(info, 1);
-} 
+}
 
 void	arr_size(int argc, char **argv, t_info *info)
 {
@@ -85,7 +85,7 @@ long long	ft_atoll(char *str, int *index)
 
 long long	atoll_to_int(char *str, t_info *info, int *index)
 {
-	long long tmp;
+	long long	tmp;
 
 	tmp = ft_atoll(str, index);
 	if (tmp > INT_MAX || tmp < INT_MIN)

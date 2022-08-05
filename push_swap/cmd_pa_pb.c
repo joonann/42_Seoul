@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 06:47:43 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/03 06:47:45 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 10:27:48 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	pa_2(t_info *info, t_node *tmp)
 	{
 		info->b_top = info->b_top->next;
 		info->b_top->prev = NULL;
-		info->a_top->prev =tmp;
+		info->a_top->prev = tmp;
 		tmp->next = info->a_top;
 		info->a_top = tmp;
 	}
@@ -71,7 +71,7 @@ void	pb_2(t_info *info, t_node *tmp)
 	{
 		info->a_top = info->a_top->next;
 		info->a_top->prev = NULL;
-		info->b_top->prev =tmp;
+		info->b_top->prev = tmp;
 		tmp->next = info->b_top;
 		info->b_top = tmp;
 	}
