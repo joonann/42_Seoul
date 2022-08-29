@@ -6,7 +6,7 @@
 #    By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 12:50:55 by junhkim           #+#    #+#              #
-#    Updated: 2022/03/10 19:44:03 by junhkim          ###   ########.fr        #
+#    Updated: 2022/08/30 06:34:42 by junhkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: clean all
+re: fclean all
 
 .PHONY: all clean fclean re bonus

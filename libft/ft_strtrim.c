@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:38:34 by junhkim           #+#    #+#             */
-/*   Updated: 2022/01/28 01:11:14 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/30 07:19:42 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	s1_len = ft_strlen(s1);
 	first = ft_first(s1, set, s1_len);
 	last = ft_last(s1, set, s1_len);
-	if (first >= last)
+	if (first > last)
 		return (ft_strdup(""));
 	result = ft_substr(s1, first, last - first + 1);
 	return (result);
