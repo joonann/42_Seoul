@@ -7,7 +7,8 @@ AR = ar -rcs
 
 RM = rm -rf
 
-SRCS = main.c philo_error.c philo_init.c philo_thread.c philo_utils.c
+SRCS = main.c philo_error.c philo_init.c philo_thread.c philo_utils.c \
+	   philo_routine.c
 
 OBJS = $(SRCS:.c=.o)
 

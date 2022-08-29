@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:09:16 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/30 05:30:37 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/30 06:05:07 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ int			ft_isdigit(int c);
 int			ft_isspace(char c);
 int			ft_mutex_init(t_args *args);
 int			ft_mutex_destroy(t_args *args);
+void		ft_check_dead(t_args *args, t_philo *philo, int *i, long long *now);
+void		ft_routine_sub_1(t_args *args, t_philo *philo);
+void		ft_routine_sub_2(t_args *args, t_philo *philo);
 
 #endif
