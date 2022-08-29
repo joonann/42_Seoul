@@ -3,25 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:26:22 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/29 18:28:54 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/30 02:06:42 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int	ft_mutex_init(t_args *args)
+{
+	if (pthread_mutex_init(&(args->print), NULL))
+		return (-1);
+	if (pthread_mutex_init(&(args->check), NULL))
+	{
+		pthread_mutex_destroy(&(args->print));
+		return (-1);
+	}
+	if (pthread_mutex_init(&(args->routine), NULL))
+	{
+		pthread_mutex_destroy(&(args->print));
+		pthread_mutex_destroy(&(args->check));
+		return (-1);
+	}
+	if (pthread_mutex_init(&(args->pass_time), NULL))
+	{
+		pthread_mutex_destroy(&(args->print));
+		pthread_mutex_destroy(&(args->check));
+		pthread_mutex_destroy(&(args->routine));
+		return (-1);
+	}
+	return (0);
+}
+
 int	ft_args_init_mutex(t_args *args)
 {
 	int	i;
 
-	if (pthread_mutex_init(&(args->print), NULL))
-		return (1);
+	if (ft_mutex_init(args))
+		return (-1);
 	args->forks = malloc(sizeof(pthread_mutex_t) * args->philo_num);
 	if (!(args->forks))
 	{
-		pthread_mutex_destroy(&(args->print));
+		ft_mutex_destroy(args);
 		return (1);
 	}
 	i = 0;
@@ -43,13 +68,15 @@ int	ft_args_init(t_args *args, int argc, char *argv[])
 	args->start_time = ft_get_time();
 	if (args->philo_num <= 0 || args->time_die < 0
 		|| args->time_eat < 0 || args->time_sleep < 0)
-		return (1);
+		return (-1);
 	if (argc == 6)
 	{
 		args->eat_must = ft_atoi(argv[5]);
 		if (args->eat_must <= 0)
 			return (1);
 	}
+	else
+		args->eat_must = 0;
 	if (ft_args_init_mutex(args))
 		return (1);
 	return (0);

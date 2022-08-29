@@ -6,7 +6,7 @@
 /*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:09:16 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/29 18:27:23 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/30 05:30:37 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ typedef struct s_args
 	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
+	pthread_mutex_t	check;
+	pthread_mutex_t	routine;
+	pthread_mutex_t	pass_time;
+	pthread_mutex_t	death;
 }	t_args;
 
 typedef struct s_philo
@@ -53,7 +57,7 @@ int			ft_args_init(t_args *args, int argc, char *argv[]);
 int			ft_philo_init(t_philo **philo, t_args *args);
 int			error_free(char *msg, t_args *args, t_philo **philo);
 int			error_destroy(char *msg, t_args *args, t_philo **philo);
-void		ft_pass_time(long long wait_time, t_args *args);
+void		ft_pass_time(long long wait_time);
 void		*ft_routine(void *argv);
 int			ft_philo_printf(t_args *args, int id, char *msg);
 int			ft_philo_action(t_args *args, t_philo *philo);
@@ -63,5 +67,7 @@ int			ft_philo_start(t_args *args, t_philo *philo);
 int			ft_atoi(char *str);
 int			ft_isdigit(int c);
 int			ft_isspace(char c);
+int			ft_mutex_init(t_args *args);
+int			ft_mutex_destroy(t_args *args);
 
 #endif

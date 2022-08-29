@@ -1,7 +1,7 @@
 NAME = philo
 
 CC = cc
-CFlAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra
 
 AR = ar -rcs
 
@@ -25,6 +25,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: clean all
+re: fclean all
 
 .PHONY: all clean fclean re

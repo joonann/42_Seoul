@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:26:00 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/29 18:27:54 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/30 02:04:39 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,17 @@ int	mutex_destroy_while_init(t_args *args, int index)
 		pthread_mutex_destroy(&(args->forks[i]));
 		i++;
 	}
-	pthread_mutex_destroy(&(args->print));
+	ft_mutex_destroy(args);
 	return (1);
+}
+
+int	ft_mutex_destroy(t_args *args)
+{
+	pthread_mutex_destroy(&(args->print));
+	pthread_mutex_destroy(&(args->check));
+	pthread_mutex_destroy(&(args->routine));
+	pthread_mutex_destroy(&(args->pass_time));
+	return (0);
 }
 
 int	error_destroy(char *msg, t_args *args, t_philo **philo)
@@ -42,7 +51,7 @@ int	error_destroy(char *msg, t_args *args, t_philo **philo)
 		pthread_mutex_destroy(&(args->forks[i]));
 		i++;
 	}
-	pthread_mutex_destroy(&(args->print));
+	ft_mutex_destroy(args);
 	return (error_free(msg, args, philo));
 }
 
