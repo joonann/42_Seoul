@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 18:25:21 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/30 05:36:12 by junhkim          ###   ########.fr       */
+/*   Created: 2022/08/30 23:35:56 by junhkim           #+#    #+#             */
+/*   Updated: 2022/08/30 23:35:58 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ long long	ft_get_time(void)
 {
 	struct timeval	time;
 
-	if (gettimeofday(&time, NULL) == -1)
-		return (-1);
+	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
@@ -41,8 +40,6 @@ int	ft_philo_printf(t_args *args, int id, char *msg)
 	long long	now;
 
 	now = ft_get_time();
-	if (now == -1)
-		return (-1);
 	pthread_mutex_lock(&(args->check));
 	pthread_mutex_lock(&(args->print));
 	if (!(args->finish))
