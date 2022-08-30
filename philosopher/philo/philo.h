@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 23:36:16 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/30 23:36:19 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/31 01:22:46 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_args
 	pthread_mutex_t	check;
 	pthread_mutex_t	routine;
 	pthread_mutex_t	pass_time;
-	pthread_mutex_t	death;
 }	t_args;
 
 typedef struct s_philo

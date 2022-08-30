@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junhkim <junhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junhkim <junhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 06:16:27 by junhkim           #+#    #+#             */
-/*   Updated: 2022/08/30 06:17:27 by junhkim          ###   ########.fr       */
+/*   Updated: 2022/08/31 01:22:44 by junhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@ void	ft_routine_sub_1(t_args *args, t_philo *philo)
 {
 	pthread_mutex_unlock(&(args->check));
 	ft_philo_action(args, philo);
+	if (args->philo_num == 1)
+		ft_pass_time(args->time_die + 1000);
 	pthread_mutex_lock(&(args->routine));
 }
 
 void	ft_routine_sub_2(t_args *args, t_philo *philo)
 {
 	pthread_mutex_unlock(&(args->routine));
-	ft_philo_printf(args, philo->id, "is sleeping");
-	ft_pass_time((long long)args->time_sleep);
-	ft_philo_printf(args, philo->id, "is thinking");
+	if (args->philo_num != 1)
+	{
+		ft_philo_printf(args, philo->id, "is sleeping");
+		ft_pass_time((long long)args->time_sleep);
+		ft_philo_printf(args, philo->id, "is thinking");
+	}
 }
 
 void	*ft_routine(void *argv)
